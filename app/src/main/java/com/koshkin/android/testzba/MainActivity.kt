@@ -9,7 +9,7 @@ import androidx.navigation.findNavController
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.navigateUp
 import androidx.navigation.ui.setupActionBarWithNavController
-import com.beust.klaxon.Klaxon
+
 import com.google.android.material.snackbar.Snackbar
 import com.koshkin.android.testzba.databinding.ActivityMainBinding
 import kotlinx.coroutines.Dispatchers
@@ -56,7 +56,7 @@ class MainActivity : AppCompatActivity() {
             if (result != null) {
                 try {
                     // Parse result string JSON to data class
-                    cardDate = Klaxon().parse<CardDate>(result)
+                  //  cardDate = Klaxon().parse<CardDate>(result)
 
                     withContext(Dispatchers.Main) {
                         // Update view model
