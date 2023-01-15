@@ -48,3 +48,4 @@ data class Bank (
     @field:Json(name="city"  ) val city  : String? ,
 
 )
+
