@@ -3,7 +3,7 @@ package com.koshkin.android.testzba.data.api
 import com.squareup.moshi.Json
 
 
-class ApiResponse(val cardData: CardData)
+class BinApiResponse(val cardData: CardData)
 data class CardData(
     @field: Json(name = "number")
     val number: Number?,

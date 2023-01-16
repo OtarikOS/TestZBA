@@ -6,5 +6,5 @@ import retrofit2.http.Query
 
 interface BinApi {
     @GET("volumes")
-    suspend fun getBin(@Query("q") author: String):Response<ApiResponse>
+    suspend fun getBin(@Query("q") author: String):Response<BinApiResponse>
 }
