@@ -60,8 +60,8 @@ class MainActivity : AppCompatActivity() {
 
                     withContext(Dispatchers.Main) {
                         // Update view model
-                        viewModel.title.value = cardDate?.title
-                        viewModel.description.value = cardDate?.description
+                      //  viewModel.title.value = cardDate?.title
+                      //  viewModel.description.value = cardDate?.description
                     }
                 }
                 catch(err:Error) {
