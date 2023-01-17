@@ -7,13 +7,13 @@ import androidx.room.PrimaryKey
 data class BinEntities (
     @PrimaryKey
     val id:Int,
-    val number:String?,
+//    val number:String?,
     val scheme:String?,
     val type:String?,
     val brand:String?,
-    val prepaid:String?,
-    val country:String?,
-    val bank:String?,
+    val prepaid:Boolean?,
+ //   val country:String?,
+//    val bank:String?,
 
      val numeric: String?,
      val alpha2: String?,
