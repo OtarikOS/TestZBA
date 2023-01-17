@@ -13,16 +13,16 @@ class BinLocalDataSourceImp(
     private val binDao: BinDao,
     private val dispatcher: CoroutineDispatcher,
     private val binEntityMapper: BinEntityMapper
-) {
-    suspend fun saveBinCard(bin: BinCard) = withContext(dispatcher){
+):BinLocalDataSource {
+    override suspend fun saveBinCard(bin: BinCard) = withContext(dispatcher){
         binDao.saveBin(binEntityMapper.toBinEntities(bin))
     }
 
-    suspend fun deleteBinCard(bin: BinCard) = withContext(dispatcher){
+    override suspend fun deleteBinCard(bin: BinCard) = withContext(dispatcher){
         binDao.deleteBin(binEntityMapper.toBinEntities(bin))
     }
 
-    suspend fun getBinsFlow():Flow<List<BinCard>>{
+    override suspend fun getSavedBins():Flow<List<BinCard>>{
         val savedBinFlow = binDao.getSavedBins()
         return savedBinFlow.map { list: List<BinEntities> -> list.map { element->binEntityMapper.toBinCard(element) } }
     }

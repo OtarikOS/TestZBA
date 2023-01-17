@@ -1,4 +1,4 @@
-package com.koshkin.android.testzba
+package com.koshkin.android.testzba.presentation
 
 import android.os.Bundle
 import android.view.Menu
@@ -19,6 +19,7 @@ import okhttp3.OkHttpClient
 import okhttp3.Request
 import java.net.URL
 import androidx.activity.viewModels
+import com.koshkin.android.testzba.R
 
 
 class MainActivity : AppCompatActivity() {
@@ -28,7 +29,7 @@ class MainActivity : AppCompatActivity() {
 
     var client:OkHttpClient = OkHttpClient()
                     //maybe activityViewModels()
-    val viewModel:MainActivityViewModel by viewModels()
+    val viewModel: MainActivityViewModel by viewModels()
 
     private fun getRequest(sUrl: String): String? {
         var result: String? = null

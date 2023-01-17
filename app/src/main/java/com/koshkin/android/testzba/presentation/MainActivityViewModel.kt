@@ -1,4 +1,4 @@
-package com.koshkin.android.testzba
+package com.koshkin.android.testzba.presentation
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel

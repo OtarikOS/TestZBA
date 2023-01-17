@@ -1,9 +1,12 @@
-package com.koshkin.android.testzba.data.repositories
+package com.koshkin.android.testzba.domain.repositories
 
+import com.koshkin.android.testzba.domain.common.Result
 import com.koshkin.android.testzba.domain.entities.BinCard
 import kotlinx.coroutines.flow.Flow
 
-interface BinLocalDataSource {
+interface BinRepository {
+    suspend fun getRemoteBin(id:Int): Result<BinCard>
+
     suspend fun saveBinCard(bin: BinCard)
 
     suspend fun deleteBinCard(bin: BinCard)
