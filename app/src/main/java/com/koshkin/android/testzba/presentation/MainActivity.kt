@@ -29,7 +29,7 @@ class MainActivity : AppCompatActivity() {
 
     var client:OkHttpClient = OkHttpClient()
                     //maybe activityViewModels()
-    val viewModel: MainActivityViewModel by viewModels()
+    val viewModel: BinViewModel by viewModels()
 
     private fun getRequest(sUrl: String): String? {
         var result: String? = null
