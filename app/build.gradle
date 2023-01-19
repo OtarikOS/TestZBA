@@ -17,7 +17,8 @@ android {
         versionName "1.0"
 
         testInstrumentationRunner 'androidx.test.runner.AndroidJUnitRunner'
-        buildConfigField 'String', 'BIN_API_ENDPOINT', '\"https://lookup.binlist.net/\"'
+        flavorDimensions("default")
+ //       buildConfigField 'String', 'BIN_API_ENDPOINT', '\"https://lookup.binlist.net/\"'
     }
 
     buildTypes {

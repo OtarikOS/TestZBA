@@ -15,7 +15,7 @@ abstract class BinDataBase : RoomDatabase() {
         @Volatile
         private var INSTANCE: BinDataBase? = null
 
-        private fun getDataBase(appContext: Context): BinDataBase {
+        fun getDataBase(appContext: Context): BinDataBase {
 val tempInstance= INSTANCE
             if (tempInstance!=null){
                 return tempInstance
