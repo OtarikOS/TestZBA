@@ -1,4 +1,4 @@
-package com.koshkin.android.testzba.presentation
+package com.koshkin.android.testzba.presentation.ui
 
 import android.os.Bundle
 import android.view.Menu
@@ -20,6 +20,7 @@ import okhttp3.Request
 import java.net.URL
 import androidx.activity.viewModels
 import com.koshkin.android.testzba.R
+import com.koshkin.android.testzba.presentation.CardDate
 
 
 class MainActivity : AppCompatActivity() {

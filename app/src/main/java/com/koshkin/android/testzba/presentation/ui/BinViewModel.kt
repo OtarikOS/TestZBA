@@ -1,23 +1,23 @@
-package com.koshkin.android.testzba.presentation
+package com.koshkin.android.testzba.presentation.ui
 
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModel
-import androidx.lifecycle.viewModelScope
+import androidx.lifecycle.*
 import com.koshkin.android.testzba.domain.entities.BinCard
 import com.koshkin.android.testzba.domain.usecases.DeleteBinCardUseCase
 import com.koshkin.android.testzba.domain.usecases.GetRemoteBinUseCase
 import com.koshkin.android.testzba.domain.usecases.GetSavedBinsUseCase
+import com.koshkin.android.testzba.domain.usecases.SaveBinCardUseCase
 import com.koshkin.android.testzba.presentation.entitypr.BinEntityPr
 import kotlinx.coroutines.launch
 import com.koshkin.android.testzba.domain.common.Result
+import com.koshkin.android.testzba.presentation.mapperspr.BinEntityMapperPr
 
 class BinViewModel(
 
     private val deleteBinCardUseCase: DeleteBinCardUseCase,
     private val getRemoteBinUseCase: GetRemoteBinUseCase,
     private val getSavedBinsUseCase: GetSavedBinsUseCase,
-    private val savedBinsUseCase: GetSavedBinsUseCase
+    private val savedBinsUseCase: SaveBinCardUseCase,
+    private val mapper: BinEntityMapperPr
 ) : ViewModel() {
 
     private val _dataLoading = MutableLiveData(true)
@@ -47,10 +47,38 @@ class BinViewModel(
                     bin.value = null
                     _error.postValue(binResult.exception.message)
                 }
-
             }
         }
-
     }
 
+    fun saveBinPr(bin: BinEntityPr) {
+        viewModelScope.launch {
+            savedBinsUseCase.invoke(mapper.fromEntityPrToBinCard(bin))
+        }
+    }
+
+    fun deleteBinPr(bin: BinEntityPr) {
+        viewModelScope.launch {
+            deleteBinCardUseCase.invoke(mapper.fromEntityPrToBinCard(bin))
+        }
+    }
+
+    class BinViewModelFactory(
+
+        private val deleteBinCardUseCase: DeleteBinCardUseCase,
+        private val getRemoteBinUseCase: GetRemoteBinUseCase,
+        private val getSavedBinsUseCase: GetSavedBinsUseCase,
+        private val savedBinsUseCase: SaveBinCardUseCase,
+        private val mapper: BinEntityMapperPr
+    ) : ViewModelProvider.NewInstanceFactory() {
+        override fun <T : ViewModel> create(modelClass: Class<T>): T {
+            return BinViewModel(
+                deleteBinCardUseCase,
+                getRemoteBinUseCase,
+                getSavedBinsUseCase,
+                savedBinsUseCase,
+                mapper
+            ) as T
+        }
+    }
 }

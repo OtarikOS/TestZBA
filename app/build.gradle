@@ -17,14 +17,19 @@ android {
         versionName "1.0"
 
         testInstrumentationRunner 'androidx.test.runner.AndroidJUnitRunner'
+        buildConfigField 'String', 'BIN_API_ENDPOINT', '\"https://lookup.binlist.net/\"'
     }
 
     buildTypes {
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+ //           buildConfigField 'String', 'BIN_APIS_ENDPOINT', '"https://lookup.binlist.net/"'
         }
-    }
+//        debug{
+//            buildConfigField 'String', 'BIN_APIS_ENDPOINT', '"https://lookup.binlist.net/"'
+//        }
+   }
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
@@ -34,6 +39,21 @@ android {
         }
         buildFeatures {
             viewBinding true
+        }
+    }
+
+//    buildTypes.each{
+//        it.buildConfigField 'String', 'BIN_API_ENDPOINT', API_ENDPOINT
+//    }
+
+    productFlavors {
+        staging {
+            applicationIdSuffix ".staging"
+            buildConfigField 'String', 'BIN_API_ENDPOINT', '"https://lookup.binlist.net/"'
+        }
+
+        prod {
+            buildConfigField 'String', 'BIN_APIS_ENDPOINT', '"https://lookup.binlist.net/"'
         }
     }
 }
