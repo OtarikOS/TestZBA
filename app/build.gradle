@@ -50,11 +50,11 @@ android {
     productFlavors {
         staging {
             applicationIdSuffix ".staging"
-            buildConfigField 'String', 'BIN_API_ENDPOINT', '"https://lookup.binlist.net/"'
+            buildConfigField 'String', 'BIN_API_ENDPOINT', '"http://lookup.binlist.net/"'
         }
 
         prod {
-            buildConfigField 'String', 'BIN_APIS_ENDPOINT', '"https://lookup.binlist.net/"'
+            buildConfigField 'String', 'BIN_APIS_ENDPOINT', '"http://lookup.binlist.net/"'
         }
     }
 }
