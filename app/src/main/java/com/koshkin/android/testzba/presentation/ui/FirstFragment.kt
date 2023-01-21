@@ -40,7 +40,7 @@ class FirstFragment : Fragment() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binViewModel.getBinV(45717360)
+        binViewModel.getBinV(40587032)
     }
 
     override fun onCreateView(

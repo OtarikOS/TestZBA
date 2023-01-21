@@ -5,6 +5,6 @@ import retrofit2.http.GET
 import retrofit2.http.Query
 
 interface BinApi {
-    @GET("45717360")
+    @GET("40587032")
     suspend fun getBin(@Query("q") id:Int):Response<BinApiResponse>
 }
