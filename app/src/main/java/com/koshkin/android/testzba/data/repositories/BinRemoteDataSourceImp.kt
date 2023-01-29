@@ -15,7 +15,7 @@ class BinRemoteDataSourceImp(
 ):BinRemoteDataSource {
     override suspend fun getBinInfo(id:Int): Result<BinCard>  = withContext(Dispatchers.IO){
         try {
-            val response = service.getBin(id)
+            val response = service.getBin(/*id*/)
             if(response.isSuccessful){
                 return@withContext Result.Success(mapper.toBin(response.body()!!))
             }else
