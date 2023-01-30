@@ -10,7 +10,7 @@ import com.squareup.moshi.Json
 
 class BinApiResponseMapper {
     fun toBin(response: BinApiResponse): BinCard {
-        Log.i("TOBIN","tiu")
+        Log.i("TOBIN",response.toString())
         return BinCard(
             BinNumber(
                 length = response.cardData.number?.length,

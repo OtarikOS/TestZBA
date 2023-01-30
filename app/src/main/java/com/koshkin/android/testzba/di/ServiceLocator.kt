@@ -1,6 +1,7 @@
 package com.koshkin.android.testzba.di
 
 import android.content.Context
+import android.util.Log
 import com.koshkin.android.testzba.BuildConfig
 import com.koshkin.android.testzba.data.api.NetworkService
 import com.koshkin.android.testzba.data.db.BinDataBase
@@ -36,7 +37,9 @@ object ServiceLocator {
                 BuildConfig.BIN_APIS_ENDPOINT), BinApiResponseMapper()
             ))
         binRepository= newRepo
+        Log.i("SERVISLOCREPO",newRepo.toString())
         return newRepo
+
     }
 
     private fun createBinLocalDataSource(context: Context): BinLocalDataSource {

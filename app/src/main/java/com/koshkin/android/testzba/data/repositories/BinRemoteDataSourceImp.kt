@@ -1,6 +1,8 @@
 package com.koshkin.android.testzba.data.repositories
 
+import android.util.Log
 import com.koshkin.android.testzba.data.api.BinApi
+import com.koshkin.android.testzba.data.api.CardData
 import com.koshkin.android.testzba.data.mappers.BinApiResponseMapper
 import com.koshkin.android.testzba.domain.entities.BinCard
 import kotlinx.coroutines.Dispatchers
@@ -21,6 +23,8 @@ class BinRemoteDataSourceImp(
             }else
                 return@withContext Result.Error(Exception(response.message()))
         }catch (e:Exception){
+            Log.i("BINREM_D_S_IMP",service.getBin().body()?.cardData.toString())
+            Log.i("BINREM_D_S_IMP",service.getBin().isSuccessful.toString())
             return@withContext Result.Error(e)
         }
     }

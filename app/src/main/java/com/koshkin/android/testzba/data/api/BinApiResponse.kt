@@ -1,51 +1,52 @@
 package com.koshkin.android.testzba.data.api
 
+import com.google.gson.annotations.SerializedName
 import com.squareup.moshi.Json
 
 
 class BinApiResponse(val cardData: CardData)
 data class CardData(
-    @field: Json(name = "number")
-    val number: Number?,
-    @field: Json(name = "scheme")
-    val scheme: String?,
-    @field: Json(name = "type")
-    val type: String?,
-    @field: Json(name = "brand")
-    val brand: String?,
-    @field: Json(name = "prepaid")
-    val prepaid: Boolean?,
-    @field: Json(name = "country")
-    val country: Country?,
-    @field: Json(name = "bank")
-    val bank: Bank?,
+
+
+    @SerializedName("number"  ) var number  : Number?  = Number(),
+    @SerializedName("scheme"  ) var scheme  : String?  = null,
+    @SerializedName("type"    ) var type    : String?  = null,
+    @SerializedName("brand"   ) var brand   : String?  = null,
+    @SerializedName("prepaid" ) var prepaid : Boolean? = null,
+    @SerializedName("country" ) var country : Country? = Country(),
+    @SerializedName("bank"    ) var bank    : Bank?    = Bank()
+
 )
+
+
 
 data class Country(
 
-    @field: Json(name = "numeric") val numeric: String?,
-    @field:Json(name = "alpha2") val alpha2: String?,
-    @field: Json(name = "name") val name: String?,
-    @field: Json(name = "emoji") val emoji: String?,
-    @field: Json(name = "currency") val currency: String?,
-    @field:Json(name = "latitude") val latitude: Int?,
-    @field:Json(name = "longitude") val longitude: Int?,
+    @SerializedName("numeric"   ) var numeric   : String? = null,
+    @SerializedName("alpha2"    ) var alpha2    : String? = null,
+    @SerializedName("name"      ) var name      : String? = null,
+    @SerializedName("emoji"     ) var emoji     : String? = null,
+    @SerializedName("currency"  ) var currency  : String? = null,
+    @SerializedName("latitude"  ) var latitude  : Int?    = null,
+    @SerializedName("longitude" ) var longitude : Int?    = null
 
     )
 
 data class Number (
 
-    @field:Json(name ="length" ) val length : Int?     ,
-    @field:Json(name="luhn"   ) val luhn   : Boolean?,
+    @SerializedName("length" ) var length : Int?     = null,
+    @SerializedName("luhn"   ) var luhn   : Boolean? = null
+
 
 )
 
 data class Bank (
 
-    @field:Json(name="name"  ) val name  : String?,
-    @field:Json(name="url"   ) val url   : String? ,
-    @field:Json(name="phone" ) val phone : String? ,
-    @field:Json(name="city"  ) val city  : String? ,
+    @SerializedName("name"  ) var name  : String? = null,
+    @SerializedName("url"   ) var url   : String? = null,
+    @SerializedName("phone" ) var phone : String? = null,
+    @SerializedName("city"  ) var city  : String? = null
+
 
 )
 

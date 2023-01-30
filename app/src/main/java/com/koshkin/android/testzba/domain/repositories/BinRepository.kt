@@ -1,5 +1,6 @@
 package com.koshkin.android.testzba.domain.repositories
 
+import com.koshkin.android.testzba.data.api.CardData
 import com.koshkin.android.testzba.domain.common.Result
 import com.koshkin.android.testzba.domain.entities.BinCard
 import kotlinx.coroutines.flow.Flow

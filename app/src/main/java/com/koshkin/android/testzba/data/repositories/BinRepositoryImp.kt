@@ -1,5 +1,7 @@
 package com.koshkin.android.testzba.data.repositories
 
+import android.util.Log
+import com.koshkin.android.testzba.data.api.CardData
 import com.koshkin.android.testzba.domain.common.Result
 import com.koshkin.android.testzba.domain.entities.BinCard
 import com.koshkin.android.testzba.domain.repositories.BinRepository
@@ -10,6 +12,7 @@ class BinRepositoryImp(
     val remoteDataSource: BinRemoteDataSource
 ):BinRepository {
     override suspend fun getRemoteBin(id: Int): Result<BinCard> {
+        Log.i("BIN_REP_IMP",remoteDataSource.getBinInfo(id).toString())
         return remoteDataSource.getBinInfo(id)
     }
 
