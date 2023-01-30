@@ -1,6 +1,7 @@
 package com.koshkin.android.testzba.data.api
 
 import com.jakewharton.retrofit2.adapter.kotlin.coroutines.CoroutineCallAdapterFactory
+import com.koshkin.android.testzba.data.api.HelperSsl.getUnsafeOkHttpClient
 import com.squareup.moshi.Moshi
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
@@ -22,8 +23,10 @@ class NetworkService  {
         logginInterceptor
     }
     private val httpClient by lazy {
-        OkHttpClient.Builder()
-            .addInterceptor(logginInterceptor)
+        val client =getUnsafeOkHttpClient().build()
+    //    OkHttpClient.Builder()
+                client.newBuilder()
+                    .addInterceptor(logginInterceptor)
             .build()
     }
     private  fun getRetrofit(endpointUrl:String):Retrofit{
