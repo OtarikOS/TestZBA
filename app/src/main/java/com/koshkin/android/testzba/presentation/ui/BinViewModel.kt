@@ -1,5 +1,6 @@
 package com.koshkin.android.testzba.presentation.ui
 
+import android.util.Log
 import androidx.lifecycle.*
 import com.koshkin.android.testzba.domain.entities.BinCard
 import com.koshkin.android.testzba.domain.usecases.DeleteBinCardUseCase
@@ -46,6 +47,7 @@ class BinViewModel(
                     _dataLoading.postValue(false)
                     bin.value = null
                     _error.postValue(binResult.exception.message)
+                    Log.i("BVM",binResult.toString())
                 }
             }
         }

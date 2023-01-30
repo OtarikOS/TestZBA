@@ -1,5 +1,6 @@
 package com.koshkin.android.testzba.data.mappers
 
+import android.util.Log
 import com.koshkin.android.testzba.data.api.BinApiResponse
 import com.koshkin.android.testzba.domain.entities.BinBank
 import com.koshkin.android.testzba.domain.entities.BinCard
@@ -9,6 +10,7 @@ import com.squareup.moshi.Json
 
 class BinApiResponseMapper {
     fun toBin(response: BinApiResponse): BinCard {
+        Log.i("TOBIN","tiu")
         return BinCard(
             BinNumber(
                 length = response.cardData.number?.length,
