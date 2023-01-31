@@ -66,9 +66,13 @@ class FirstFragment : Fragment() {
                     false -> LayoutUtils.crossFade(binding.textviewFirst,binding.progressBar)
                 }
             })
+            binViewModel.bin.observe(viewLifecycleOwner, {
 
-            binding.textviewFirst.text = "shem = ${binEntityPr?.scheme}\nbrand = ${binEntityPr?.brand}"
-  //          findNavController().navigate(R.id.action_FirstFragment_to_SecondFragment)
+                binding.textviewFirst.text =
+                    "shem = ${binViewModel.bin.value?.scheme}\nbrand = ${binEntityPr?.brand}"
+                Log.i("FF", binViewModel.bin.value?.scheme.toString())
+                //          findNavController().navigate(R.id.action_FirstFragment_to_SecondFragment)
+            })
 
             binViewModel.error.observe(viewLifecycleOwner, {
                 Toast.makeText(

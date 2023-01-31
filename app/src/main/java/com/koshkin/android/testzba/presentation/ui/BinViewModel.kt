@@ -24,8 +24,11 @@ class BinViewModel(
     private val _dataLoading = MutableLiveData(true)
     val dataLoading: LiveData<Boolean> = _dataLoading
 
-    private val _bin = MutableLiveData<BinEntityPr>()
-    val bin = _bin
+    private var _bin = MutableLiveData<BinEntityPr>()
+    var bin:LiveData<BinEntityPr> = _bin
+
+    var binPr:BinEntityPr? = null
+
 
     private val _error = MutableLiveData<String>()
     val error: LiveData<String> = _error
@@ -39,13 +42,16 @@ class BinViewModel(
                 is Result.Success -> {
                     _remoteBin = null
                     _remoteBin = binResult.data
-
+                    _dataLoading.postValue(false)
+                     _bin.postValue(mapper.fromBinCardToBinEntityPr(binResult.data))
+                    binPr
+         //           Log.i("BVM_binPr", binPr!!.scheme.toString())
 //                val savedBins = getSavedBinsUseCase.invoke()
 //                savedBins.collect {sBins -> bin.value = mapper.fro}
                 }
                 is Result.Error -> {
                     _dataLoading.postValue(false)
-                    bin.value = null
+              //      bin.value = null
                     _error.postValue(binResult.exception.message)
                     Log.i("BVM",binResult.toString())
                 }
