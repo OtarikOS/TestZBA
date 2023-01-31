@@ -8,7 +8,6 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.viewModels
-import androidx.navigation.fragment.findNavController
 import com.koshkin.android.testzba.CABApplication
 import com.koshkin.android.testzba.LayoutUtils
 import com.koshkin.android.testzba.R
@@ -26,6 +25,7 @@ class FirstFragment : Fragment() {
     // onDestroyView.
     private val binding get() = _binding!!
     private  val binEntityPr:BinEntityPr? =null
+
 
     private val binViewModel : BinViewModel by viewModels{
         Log.i("KEK",requireActivity().application.toString())
@@ -56,9 +56,11 @@ class FirstFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        binding.buttonFirst.setOnClickListener {
 
-            binViewModel.getBinV(40587032)
+        binding.buttonFirst.setOnClickListener {
+            var id = binding.editText.text.toString()
+Log.i("FF_get",id)
+            binViewModel.getBinV(id.toIntOrNull()!!)
 
             binViewModel.dataLoading.observe(viewLifecycleOwner,{loading ->
                 when(loading){

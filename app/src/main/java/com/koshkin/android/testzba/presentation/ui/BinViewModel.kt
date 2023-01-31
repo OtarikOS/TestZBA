@@ -1,5 +1,6 @@
 package com.koshkin.android.testzba.presentation.ui
 
+import android.text.Editable
 import android.util.Log
 import androidx.lifecycle.*
 import com.koshkin.android.testzba.domain.entities.BinCard
@@ -45,7 +46,9 @@ class BinViewModel(
                     _dataLoading.postValue(false)
                      _bin.postValue(mapper.fromBinCardToBinEntityPr(binResult.data))
                     binPr
-         //           Log.i("BVM_binPr", binPr!!.scheme.toString())
+                    Log.i("BVM_binPr", _dataLoading.value.toString())
+                    savedBinsUseCase.invoke(_remoteBin!!)
+
 //                val savedBins = getSavedBinsUseCase.invoke()
 //                savedBins.collect {sBins -> bin.value = mapper.fro}
                 }
