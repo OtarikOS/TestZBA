@@ -40,7 +40,7 @@ class FirstFragment : Fragment() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binViewModel.getBinV(40587032)
+
     }
 
     override fun onCreateView(
@@ -57,6 +57,8 @@ class FirstFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         binding.buttonFirst.setOnClickListener {
+
+            binViewModel.getBinV(40587032)
 
             binViewModel.dataLoading.observe(viewLifecycleOwner,{loading ->
                 when(loading){

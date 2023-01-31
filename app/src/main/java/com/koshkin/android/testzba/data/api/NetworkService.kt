@@ -24,6 +24,9 @@ class NetworkService  {
 //     val jsonAdapter: JsonAdapter<CardData> = moshi.adapter(Class<CardData>())
 //    }
 
+    private  val gson by lazy {
+         GsonBuilder().create()
+    }
 
 
     private val logginInterceptor by lazy {
@@ -45,7 +48,7 @@ class NetworkService  {
             .client(httpClient)
       //     .addConverterFactory(MoshiConverterFactory.create(moshi))
             .addConverterFactory(ScalarsConverterFactory.create())
-            .addConverterFactory(GsonConverterFactory.create())
+            .addConverterFactory(GsonConverterFactory.create(gson))
             .addCallAdapterFactory(CoroutineCallAdapterFactory())
             .build()
 

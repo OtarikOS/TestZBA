@@ -6,5 +6,5 @@ import retrofit2.http.Query
 
 interface BinApi {
     @GET("40587032")
-    suspend fun getBin(/*@Query("q") id:Int*/):Response<BinApiResponse>
+    suspend fun getBin(/*@Query("q") id:Int*/):Response<CardData>
 }
