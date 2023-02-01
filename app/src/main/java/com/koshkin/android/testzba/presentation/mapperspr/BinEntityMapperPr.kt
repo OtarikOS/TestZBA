@@ -8,10 +8,10 @@ import com.koshkin.android.testzba.presentation.entitypr.BinEntityPr
 
 class BinEntityMapperPr {
     fun fromBinCardToBinEntityPr(
-        binCard: BinCard,
+        binCard: BinCard,id:Int
     ): BinEntityPr {
         return BinEntityPr(
-            id = 1,//TODO
+            id = id,
             scheme = binCard.scheme,
             type = binCard.type,
             brand = binCard.brand,

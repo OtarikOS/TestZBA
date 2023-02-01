@@ -8,7 +8,7 @@ import kotlinx.coroutines.flow.Flow
 interface BinDao {
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-        suspend fun saveBin(Bin:BinEntities)
+       suspend fun saveBin(bin:BinEntities)
 
     @Query("SELECT * FROM Bin")
     fun getSavedBins(): Flow<List<BinEntities>>

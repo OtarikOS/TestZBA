@@ -4,6 +4,8 @@ import com.koshkin.android.testzba.data.db.BinDao
 import com.koshkin.android.testzba.data.entities.BinEntities
 import com.koshkin.android.testzba.data.mappers.BinEntityMapper
 import com.koshkin.android.testzba.domain.entities.BinCard
+import com.koshkin.android.testzba.presentation.entitypr.BinEntityPr
+import com.koshkin.android.testzba.presentation.mapperspr.BinEntityMapperPr
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
@@ -14,16 +16,17 @@ class BinLocalDataSourceImp(
     private val dispatcher: CoroutineDispatcher,
     private val binEntityMapper: BinEntityMapper
 ):BinLocalDataSource {
-    override suspend fun saveBinCard(bin: BinCard) = withContext(dispatcher){
-        binDao.saveBin(binEntityMapper.toBinEntities(bin))
+    override suspend fun saveBinCard(bin: BinEntities) = withContext(dispatcher){
+        binDao.saveBin((bin))
     }
 
-    override suspend fun deleteBinCard(bin: BinCard) = withContext(dispatcher){
-        binDao.deleteBin(binEntityMapper.toBinEntities(bin))
+      override  suspend fun  deleteBinCard(bin: BinEntities) = withContext(dispatcher){
+        binDao.deleteBin(bin)
     }
 
-    override suspend fun getSavedBins():Flow<List<BinCard>>{
-        val savedBinFlow = binDao.getSavedBins()
-        return savedBinFlow.map { list: List<BinEntities> -> list.map { element->binEntityMapper.toBinCard(element) } }
+    override suspend fun getSavedBins():Flow<List<BinEntities>>{
+        return binDao.getSavedBins()
+//        val savedBinFlow = binDao.getSavedBins()
+//        return savedBinFlow.map { list: List<BinEntities> -> list.map { element->binEntityMapper.toBinCard(element) } }
     }
 }

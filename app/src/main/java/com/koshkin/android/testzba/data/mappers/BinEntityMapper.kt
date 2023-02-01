@@ -8,13 +8,13 @@ import com.koshkin.android.testzba.domain.entities.BinNumber
 
 class BinEntityMapper {
     fun toBinEntities(
-        binCard: BinCard,
+        binCard: BinCard,id:Int
       /*  binCountry: BinCountry,
         binBank: BinBank,
         binNumber: BinNumber*/
     ): BinEntities {
         return BinEntities(
-            id = 1,//TODO
+            id=id,
             scheme = binCard.scheme,
             type = binCard.type,
             brand = binCard.brand,

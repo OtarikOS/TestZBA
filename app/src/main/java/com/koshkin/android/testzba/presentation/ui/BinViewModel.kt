@@ -1,8 +1,8 @@
 package com.koshkin.android.testzba.presentation.ui
 
-import android.text.Editable
 import android.util.Log
 import androidx.lifecycle.*
+import com.koshkin.android.testzba.data.mappers.BinEntityMapper
 import com.koshkin.android.testzba.domain.entities.BinCard
 import com.koshkin.android.testzba.domain.usecases.DeleteBinCardUseCase
 import com.koshkin.android.testzba.domain.usecases.GetRemoteBinUseCase
@@ -44,10 +44,10 @@ class BinViewModel(
                     _remoteBin = null
                     _remoteBin = binResult.data
                     _dataLoading.postValue(false)
-                     _bin.postValue(mapper.fromBinCardToBinEntityPr(binResult.data))
+                     _bin.postValue(mapper.fromBinCardToBinEntityPr(binResult.data,id))
                     binPr
                     Log.i("BVM_binPr", _dataLoading.value.toString())
-                    savedBinsUseCase.invoke(_remoteBin!!)
+                    savedBinsUseCase.invoke(BinEntityMapper().toBinEntities(_remoteBin!!,id))
 
 //                val savedBins = getSavedBinsUseCase.invoke()
 //                savedBins.collect {sBins -> bin.value = mapper.fro}
@@ -62,17 +62,17 @@ class BinViewModel(
         }
     }
 
-    fun saveBinPr(bin: BinEntityPr) {
-        viewModelScope.launch {
-            savedBinsUseCase.invoke(mapper.fromEntityPrToBinCard(bin))
-        }
-    }
+//    fun saveBinPr(bin: BinEntityPr) {
+//        viewModelScope.launch {
+//            savedBinsUseCase.invoke(mapper.fromEntityPrToBinCard(bin))
+//        }
+//    }
 
-    fun deleteBinPr(bin: BinEntityPr) {
-        viewModelScope.launch {
-            deleteBinCardUseCase.invoke(mapper.fromEntityPrToBinCard(bin))
-        }
-    }
+//    fun deleteBinPr(bin: BinEntityPr) {
+//        viewModelScope.launch {
+//            deleteBinCardUseCase.invoke(mapper.fromEntityPrToBinCard(bin))
+//        }
+//    }
 
     class BinViewModelFactory(
 
