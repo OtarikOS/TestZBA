@@ -1,28 +1,28 @@
-package com.koshkin.android.testzba.presentation.ui.adaters
+package com.koshkin.android.testzba.presentation.ui.adapters
 
-import android.content.ClipData.Item
+
 import android.view.LayoutInflater
 import android.view.View
 import android.view.View.GONE
 import android.view.View.VISIBLE
 import android.view.ViewGroup
+import androidx.cardview.widget.CardView
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.recyclerview.widget.RecyclerView
 import com.koshkin.android.testzba.R
-import java.util.logging.Handler
 
 
 class ExpandableAdapter(
     private val items: List<Item>,
-    private val nestedClickListener: (String)->Unit,
+    private val nestedClickListener: (View)->Unit,
     private val deleteClickListener: (View)-> Unit,
-    private val transitionFunc: (View,ConstraintLayout)->Unit,
-    private val transitionReverse:(View,ConstraintLayout)->Unit
+    private val transitionFunc: (View,CardView)->Unit,
+    private val transitionReverse:(View,CardView)->Unit
 ): RecyclerView.Adapter<ExpandableAdapter.ExpandableViewHolder>(){
 
     class ExpandableViewHolder(view: View):RecyclerView.ViewHolder(view) {
-        val rootLayout: ConstraintLayout = view.findViewById(R.id.root_layout)
-        val list: RecyclerView = view.findViewById(R.id.recycler_expandable)
+        val rootLayout: CardView = view.findViewById(R.id.root_layout)
+        val list: RecyclerView = view.findViewById(R.id.recycler_item)
 
     }
 
@@ -43,8 +43,8 @@ class ExpandableAdapter(
                         transitionFunc(list,rootLayout)
                         list.visibility = VISIBLE
                     }
-                    list.adapter = NestedAdapter(item.nestedItems){nestedClickListener(it)}
                 }
+                list.adapter = NestedAdapter(item.nestedItems) {nestedClickListener(it)}
             }
         }
     }
