@@ -11,7 +11,7 @@ interface BinDao {
        suspend fun saveBin(bin:BinEntities)
 
     @Query("SELECT * FROM Bin")
-    fun getSavedBins(): Flow<List<BinEntities>>
+    fun getSavedBins(): List<BinEntities>
 
     @Delete
     suspend fun deleteBin(Bin: BinEntities)

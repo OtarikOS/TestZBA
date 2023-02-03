@@ -10,5 +10,5 @@ interface BinLocalDataSource {
 
     suspend fun deleteBinCard(bin: BinEntities)
 
-    suspend fun getSavedBins(): Flow<List<BinEntities>>
+    suspend fun getSavedBins(): List<BinEntities>
 }

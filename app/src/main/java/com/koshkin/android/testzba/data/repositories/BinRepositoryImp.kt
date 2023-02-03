@@ -26,7 +26,7 @@ class BinRepositoryImp(
         return localDataSource.deleteBinCard(bin)
     }
 
-    override suspend fun getSavedBins(): Flow<List<BinEntities>> {
+    override suspend fun getSavedBins(): List<BinEntities> {
         return localDataSource.getSavedBins()
     }
 }

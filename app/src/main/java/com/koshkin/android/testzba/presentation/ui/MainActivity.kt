@@ -19,6 +19,10 @@ import okhttp3.OkHttpClient
 import okhttp3.Request
 import java.net.URL
 import androidx.activity.viewModels
+import androidx.navigation.NavController
+import androidx.navigation.Navigation
+import androidx.navigation.fragment.FragmentNavigator
+import androidx.navigation.fragment.FragmentNavigatorDestinationBuilder
 import com.koshkin.android.testzba.R
 import com.koshkin.android.testzba.presentation.CardDate
 
@@ -85,14 +89,15 @@ class MainActivity : AppCompatActivity() {
 
         setSupportActionBar(binding.toolbar)
 
-        val navController = findNavController(R.id.nav_host_fragment_content_main)
+       val  navController = findNavController(R.id.nav_host_fragment_content_main)
         appBarConfiguration = AppBarConfiguration(navController.graph)
         setupActionBarWithNavController(navController, appBarConfiguration)
 
-        binding.fab.setOnClickListener { view ->
-            Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                .setAction("Action", null).show()
-        }
+//        binding.fab.setOnClickListener { view ->
+//            Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
+//                .setAction("Action", null).show()
+//        }
+
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
@@ -106,10 +111,19 @@ class MainActivity : AppCompatActivity() {
         // automatically handle clicks on the Home/Up button, so long
         // as you specify a parent activity in AndroidManifest.xml.
         return when (item.itemId) {
-            R.id.action_settings -> true
+            R.id.action_history ->{
+                history()
+                true}
             else -> super.onOptionsItemSelected(item)
         }
     }
+
+    private fun history() {
+        val navController= findNavController(R.id.nav_host_fragment_content_main)
+        navController.navigate(R.id.SecondFragment)
+//        viewModel.getBinHistory()
+    }
+
 
     override fun onSupportNavigateUp(): Boolean {
         val navController = findNavController(R.id.nav_host_fragment_content_main)

@@ -24,7 +24,7 @@ class BinLocalDataSourceImp(
         binDao.deleteBin(bin)
     }
 
-    override suspend fun getSavedBins():Flow<List<BinEntities>>{
+    override suspend fun getSavedBins():List<BinEntities>{
         return binDao.getSavedBins()
 //        val savedBinFlow = binDao.getSavedBins()
 //        return savedBinFlow.map { list: List<BinEntities> -> list.map { element->binEntityMapper.toBinCard(element) } }

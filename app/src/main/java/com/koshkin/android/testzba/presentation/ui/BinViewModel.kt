@@ -26,9 +26,9 @@ class BinViewModel(
     val dataLoading: LiveData<Boolean> = _dataLoading
 
     private var _bin = MutableLiveData<BinEntityPr>()
-    var bin:LiveData<BinEntityPr> = _bin
+    var bin: LiveData<BinEntityPr> = _bin
 
-    var binPr:BinEntityPr? = null
+    var binPr: BinEntityPr? = null
 
 
     private val _error = MutableLiveData<String>()
@@ -44,21 +44,27 @@ class BinViewModel(
                     _remoteBin = null
                     _remoteBin = binResult.data
                     _dataLoading.postValue(false)
-                     _bin.postValue(mapper.fromBinCardToBinEntityPr(binResult.data,id))
+                    _bin.postValue(mapper.fromBinCardToBinEntityPr(binResult.data, id))
                     binPr
                     Log.i("BVM_binPr", _dataLoading.value.toString())
-                    savedBinsUseCase.invoke(BinEntityMapper().toBinEntities(_remoteBin!!,id))
+                    savedBinsUseCase.invoke(BinEntityMapper().toBinEntities(_remoteBin!!, id))
 
 //                val savedBins = getSavedBinsUseCase.invoke()
 //                savedBins.collect {sBins -> bin.value = mapper.fro}
                 }
                 is Result.Error -> {
                     _dataLoading.postValue(false)
-              //      bin.value = null
+                    //      bin.value = null
                     _error.postValue(binResult.exception.message)
-                    Log.i("BVM",binResult.toString())
+                    Log.i("BVM", binResult.toString())
                 }
             }
+        }
+    }
+
+    fun getBinHistory() {
+        viewModelScope.launch {
+            getSavedBinsUseCase.invoke()
         }
     }
 
