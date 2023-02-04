@@ -6,6 +6,8 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
+import android.widget.Toast.LENGTH_SHORT
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -14,6 +16,7 @@ import com.koshkin.android.testzba.CABApplication
 import com.koshkin.android.testzba.R
 import com.koshkin.android.testzba.databinding.FragmentSecondExpandableBinding
 import com.koshkin.android.testzba.presentation.ui.adapters.ExpandableAdapter
+import com.koshkin.android.testzba.presentation.ui.adapters.Item
 import kotlin.reflect.jvm.internal.impl.metadata.ProtoBuf.VersionRequirementTable
 
 /**
@@ -42,7 +45,12 @@ class SecondFragment : Fragment() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binViewModel.getBinHistory()
+        expAdapter = ExpandableAdapter(requireContext(),binViewModel.binsDb,{ })
     }
+
+//    private fun getItems() = listOf(
+//
+//    )
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -57,7 +65,10 @@ class SecondFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        binding.recyclerExpandable.apply { layoutManager =LinearLayoutManager(requireContext()) }
+        binding.recyclerExpandable.apply {
+            layoutManager =LinearLayoutManager(requireContext())
+        adapter=expAdapter
+        }
 
 
 //        binding.buttonSecond.setOnClickListener {

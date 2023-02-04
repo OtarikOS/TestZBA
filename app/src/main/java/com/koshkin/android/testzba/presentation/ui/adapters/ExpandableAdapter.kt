@@ -1,6 +1,8 @@
 package com.koshkin.android.testzba.presentation.ui.adapters
 
 
+import android.content.Context
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.View.GONE
@@ -15,13 +17,16 @@ import com.koshkin.android.testzba.data.entities.BinEntities
 
 
 class ExpandableAdapter(
-    private val bins:List<BinEntities>,
-    private val items: List<Item>,
+    private val context: Context,
+    private val bins:List<BinEntities> = arrayListOf(),
+   // private val items: List<Item>,
     private val nestedClickListener: (View)->Unit,
-    private val deleteClickListener: (View)-> Unit,
-    private val transitionFunc: (View,CardView)->Unit,
-    private val transitionReverse:(View,CardView)->Unit
+   // private val deleteClickListener: (View)-> Unit,
+  //  private val transitionFunc: (View,CardView)->Unit,
+  //  private val transitionReverse:(View,CardView)->Unit
 ): RecyclerView.Adapter<ExpandableAdapter.ExpandableViewHolder>(){
+
+    private val items: List<Item> = arrayListOf()
 
     class ExpandableViewHolder(view: View):RecyclerView.ViewHolder(view) {
         val rootLayout: CardView = view.findViewById(R.id.root_layout)
@@ -36,18 +41,22 @@ class ExpandableAdapter(
 
     override fun onBindViewHolder(holder: ExpandableViewHolder, position: Int) {
         val item = items[position]
+        items[position].id =bins[position].id
+        items[position].text = bins[position].nameBank.toString()
         holder.tvBinNumber.text = bins[position].id.toString()
         holder.tvBankName.text = bins[position].nameBank
+
+        Log.i("EX_ADAP","${items.size.toString()} ,${items[1].id}")
 
         with(holder){
             itemView.setOnClickListener {
                 when(details.visibility){
                     VISIBLE ->{
-                        transitionReverse(details,rootLayout)
+                     //   transitionReverse(details,rootLayout)
                         details.visibility = GONE
                     }
                     GONE ->{
-                        transitionFunc(details,rootLayout)
+                    //    transitionFunc(details,rootLayout)
                         details.visibility = VISIBLE
                     }
                 }

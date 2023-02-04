@@ -10,11 +10,13 @@
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recycler_expandable"
         android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+        android:layout_height="wrap_content"
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        tools:listitem="@layout/item_card_bin"/>
+        app:layout_constraintVertical_bias="0.499"
+        tools:listitem="@layout/item_card_bin" />
 </androidx.constraintlayout.widget.ConstraintLayout>

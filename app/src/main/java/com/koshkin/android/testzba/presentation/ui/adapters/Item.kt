@@ -1,7 +1,7 @@
 package com.koshkin.android.testzba.presentation.ui.adapters
 
 data class Item(
-    val id: Int,
-    val text: String,
+    var id: Int,
+    var text: String,
     val nestedItems: List<String>
 )
