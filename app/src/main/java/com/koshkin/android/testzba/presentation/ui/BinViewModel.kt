@@ -2,6 +2,7 @@ package com.koshkin.android.testzba.presentation.ui
 
 import android.util.Log
 import androidx.lifecycle.*
+import com.koshkin.android.testzba.data.entities.BinEntities
 import com.koshkin.android.testzba.data.mappers.BinEntityMapper
 import com.koshkin.android.testzba.domain.entities.BinCard
 import com.koshkin.android.testzba.domain.usecases.DeleteBinCardUseCase
@@ -29,6 +30,8 @@ class BinViewModel(
     var bin: LiveData<BinEntityPr> = _bin
 
     var binPr: BinEntityPr? = null
+
+     val binsDb = arrayListOf<BinEntities>()
 
 
     private val _error = MutableLiveData<String>()
@@ -64,8 +67,22 @@ class BinViewModel(
 
     fun getBinHistory() {
         viewModelScope.launch {
-            getSavedBinsUseCase.invoke()
+            val binResult = getSavedBinsUseCase.invoke()
+            binsDb.clear()
+                   binsDb.addAll(binResult)
+            Log.i("BVM_HIST",binsDb[0].nameBank.toString())
         }
+//        viewModelScope.launch {
+//            when(val binResult = getSavedBinsUseCase.invoke()){
+//                is Result.Success<*> ->{
+//                    binsDb.clear()
+//                    binsDb.addAll(binResult.data as Collection<BinEntities>)
+//                }
+//                is Result.Error ->{
+//                    _error.postValue(binResult.exception.message)
+//                }
+//            }
+//        }
     }
 
 //    fun saveBinPr(bin: BinEntityPr) {

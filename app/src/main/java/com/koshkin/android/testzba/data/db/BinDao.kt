@@ -2,6 +2,7 @@ package com.koshkin.android.testzba.data.db
 
 import androidx.room.*
 import com.koshkin.android.testzba.data.entities.BinEntities
+import com.koshkin.android.testzba.domain.common.Result
 import kotlinx.coroutines.flow.Flow
 
 @Dao

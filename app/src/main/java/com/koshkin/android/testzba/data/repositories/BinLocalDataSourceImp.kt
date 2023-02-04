@@ -3,6 +3,7 @@ package com.koshkin.android.testzba.data.repositories
 import com.koshkin.android.testzba.data.db.BinDao
 import com.koshkin.android.testzba.data.entities.BinEntities
 import com.koshkin.android.testzba.data.mappers.BinEntityMapper
+import com.koshkin.android.testzba.domain.common.Result
 import com.koshkin.android.testzba.domain.entities.BinCard
 import com.koshkin.android.testzba.presentation.entitypr.BinEntityPr
 import com.koshkin.android.testzba.presentation.mapperspr.BinEntityMapperPr

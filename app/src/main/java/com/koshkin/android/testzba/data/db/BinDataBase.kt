@@ -24,7 +24,9 @@ val tempInstance= INSTANCE
                 val instance = Room.databaseBuilder(
                     appContext,BinDataBase::class.java,
                     BinDataBase::class.simpleName!!
-                ).fallbackToDestructiveMigration().build()
+                )
+                    .allowMainThreadQueries()
+                    .fallbackToDestructiveMigration().build()
                 INSTANCE=instance
 return instance
             }
