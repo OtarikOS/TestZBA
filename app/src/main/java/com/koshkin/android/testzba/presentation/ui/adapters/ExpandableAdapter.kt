@@ -17,16 +17,17 @@ import com.koshkin.android.testzba.data.entities.BinEntities
 
 
 class ExpandableAdapter(
+    //TODO add animation (transitionFunc, transitionRevers)
     private val context: Context,
     private val bins:List<BinEntities> = arrayListOf(),
-   // private val items: List<Item>,
-    private val nestedClickListener: (View)->Unit,
+    private val items: List<Item>,
+    private val nestedClickListener: (String)->Unit,
    // private val deleteClickListener: (View)-> Unit,
   //  private val transitionFunc: (View,CardView)->Unit,
   //  private val transitionReverse:(View,CardView)->Unit
 ): RecyclerView.Adapter<ExpandableAdapter.ExpandableViewHolder>(){
 
-    private val items: List<Item> = arrayListOf()
+ //   private val items: List<Item> = arrayListOf()
 
     class ExpandableViewHolder(view: View):RecyclerView.ViewHolder(view) {
         val rootLayout: CardView = view.findViewById(R.id.root_layout)
@@ -36,20 +37,27 @@ class ExpandableAdapter(
 
     }
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int) = ExpandableViewHolder (
-        LayoutInflater.from(parent.context).inflate(R.layout.item_card_bin,parent,false))
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ExpandableViewHolder{
+        Log.i("EX_onCVH","yes0")
+        return ExpandableViewHolder (
+        LayoutInflater.from(context).inflate(R.layout.item_card_bin,parent,false))
+
+    }
 
     override fun onBindViewHolder(holder: ExpandableViewHolder, position: Int) {
         val item = items[position]
-        items[position].id =bins[position].id
-        items[position].text = bins[position].nameBank.toString()
-        holder.tvBinNumber.text = bins[position].id.toString()
-        holder.tvBankName.text = bins[position].nameBank
+//        items[position].id =bins[position].id
+//        items[position].text = bins[position].nameBank.toString()
+//        holder.tvBinNumber.text = bins[position].id.toString()
+//        holder.tvBankName.text = bins[position].nameBank
 
-        Log.i("EX_ADAP","${items.size.toString()} ,${items[1].id}")
+        Log.i("EX_ADAP","${items.size.toString()} ,${items[0].id}")
 
         with(holder){
+            tvBinNumber.text = item.id.toString()
+            tvBankName.text = item.text
             itemView.setOnClickListener {
+                Log.i("EX_onBVH",item.text)
                 when(details.visibility){
                     VISIBLE ->{
                      //   transitionReverse(details,rootLayout)
