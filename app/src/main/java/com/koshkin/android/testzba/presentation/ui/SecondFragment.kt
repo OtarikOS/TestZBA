@@ -6,18 +6,11 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
-import android.widget.Toast.LENGTH_SHORT
 import androidx.fragment.app.viewModels
-import androidx.navigation.fragment.findNavController
-import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
 import com.koshkin.android.testzba.CABApplication
 import com.koshkin.android.testzba.R
 import com.koshkin.android.testzba.databinding.FragmentSecondExpandableBinding
 import com.koshkin.android.testzba.presentation.ui.adapters.ExpandableAdapter
-import com.koshkin.android.testzba.presentation.ui.adapters.Item
-import kotlin.reflect.jvm.internal.impl.metadata.ProtoBuf.VersionRequirementTable
 
 /**
  * A simple [Fragment] subclass as the second destination in the navigation.
@@ -68,12 +61,12 @@ class SecondFragment : Fragment() {
 
     }
 
-    private fun getitems() =  listOf(
-    Item(12, "первый", listOf("1", "2", "3")),
-    Item(13, "второй", listOf("4", "5", "6")),
-    Item(24, "третий", listOf("7", "8", "9")),
-    Item(37, "четвертый", listOf("10", "11", "12")),
-    Item(19, "пятый", listOf("13", "14", "15"))
+    private fun getitems() =  binViewModel.detailInfo //listOf(
+//    Item(12, "первый", listOf("1", "2", "3")),
+//    Item(13, "второй", listOf("4", "5", "6")),
+//    Item(24, "третий", listOf("7", "8", "9")),
+//    Item(37, "четвертый", listOf("10", "11", "12")),
+//    Item(19, "пятый", listOf("13", "14", "15"))
     )
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)

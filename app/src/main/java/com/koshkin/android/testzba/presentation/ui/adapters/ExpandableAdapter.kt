@@ -10,10 +10,10 @@ import android.view.View.VISIBLE
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.cardview.widget.CardView
-import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.recyclerview.widget.RecyclerView
 import com.koshkin.android.testzba.R
 import com.koshkin.android.testzba.data.entities.BinEntities
+import com.koshkin.android.testzba.presentation.entitypr.Item
 
 
 class ExpandableAdapter(
@@ -55,9 +55,9 @@ class ExpandableAdapter(
 
         with(holder){
             tvBinNumber.text = item.id.toString()
-            tvBankName.text = item.text
+            tvBankName.text = item.nameBank
             itemView.setOnClickListener {
-                Log.i("EX_onBVH",item.text)
+                Log.i("EX_onBVH",item.nameBank)
                 when(details.visibility){
                     VISIBLE ->{
                      //   transitionReverse(details,rootLayout)

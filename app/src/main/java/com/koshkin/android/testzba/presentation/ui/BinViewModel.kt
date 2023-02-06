@@ -12,7 +12,9 @@ import com.koshkin.android.testzba.domain.usecases.SaveBinCardUseCase
 import com.koshkin.android.testzba.presentation.entitypr.BinEntityPr
 import kotlinx.coroutines.launch
 import com.koshkin.android.testzba.domain.common.Result
+import com.koshkin.android.testzba.presentation.entitypr.DetailInfo
 import com.koshkin.android.testzba.presentation.mapperspr.BinEntityMapperPr
+import com.koshkin.android.testzba.presentation.mapperspr.DetailMapper
 
 class BinViewModel(
 
@@ -20,9 +22,9 @@ class BinViewModel(
     private val getRemoteBinUseCase: GetRemoteBinUseCase,
     private val getSavedBinsUseCase: GetSavedBinsUseCase,
     private val savedBinsUseCase: SaveBinCardUseCase,
-    private val mapper: BinEntityMapperPr
-) : ViewModel() {
+    private val mapper: BinEntityMapperPr,
 
+) : ViewModel() {
     private val _dataLoading = MutableLiveData(true)
     val dataLoading: LiveData<Boolean> = _dataLoading
 
@@ -33,6 +35,7 @@ class BinViewModel(
 
      val binsDb = arrayListOf<BinEntities>()
 
+    var detailInfo = arrayListOf<DetailInfo>()
 
     private val _error = MutableLiveData<String>()
     val error: LiveData<String> = _error
@@ -71,6 +74,7 @@ class BinViewModel(
             binsDb.clear()
                    binsDb.addAll(binResult)
             Log.i("BVM_HIST",binsDb[0].nameBank.toString())
+            detailInfo =DetailMapper().toDetailInfoMapper(binsDb)
         }
 //        viewModelScope.launch {
 //            when(val binResult = getSavedBinsUseCase.invoke()){
@@ -111,7 +115,7 @@ class BinViewModel(
                 getRemoteBinUseCase,
                 getSavedBinsUseCase,
                 savedBinsUseCase,
-                mapper
+                mapper,
             ) as T
         }
     }

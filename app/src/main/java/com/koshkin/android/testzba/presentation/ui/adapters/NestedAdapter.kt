@@ -6,9 +6,10 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.koshkin.android.testzba.R
+import com.koshkin.android.testzba.presentation.entitypr.DetailInfo
 
 class NestedAdapter(
-    private val items: List<String>,
+    private val items: List<DetailInfo>,
     private val clickListener: (String) -> Unit
 ) : RecyclerView.Adapter<NestedAdapter.NestedViewHolder>() {
     class NestedViewHolder(view: View):RecyclerView.ViewHolder(view) {
@@ -23,7 +24,7 @@ class NestedAdapter(
         val item = items[position]
 
         with(holder) {
-            text.text = item
+            text.text = item.alpha2
          //   itemView.setOnClickListener { clickListener(item) }
         }
     }

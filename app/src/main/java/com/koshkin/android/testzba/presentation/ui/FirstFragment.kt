@@ -35,6 +35,7 @@ class FirstFragment : Fragment() {
             ((requireActivity().application) as CABApplication).getSavedBinsUseCase,
             ((requireActivity().application) as CABApplication).savedBinsUseCase,
             ((requireActivity().application) as CABApplication).binEntityMapperPr
+
         )
     }
 
