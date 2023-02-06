@@ -4,8 +4,8 @@ import com.koshkin.android.testzba.data.entities.BinEntities
 
 data class Item(
     var id: Int,
-    var nameBank: String,
-    val nestedItems: List<DetailInfo>
+    var nameBank: String?,
+    var nestedItems: DetailInfo
 )
 data  class DetailInfo (
     var scheme:String?,

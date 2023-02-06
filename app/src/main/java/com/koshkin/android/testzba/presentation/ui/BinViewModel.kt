@@ -12,7 +12,7 @@ import com.koshkin.android.testzba.domain.usecases.SaveBinCardUseCase
 import com.koshkin.android.testzba.presentation.entitypr.BinEntityPr
 import kotlinx.coroutines.launch
 import com.koshkin.android.testzba.domain.common.Result
-import com.koshkin.android.testzba.presentation.entitypr.DetailInfo
+import com.koshkin.android.testzba.presentation.entitypr.Item
 import com.koshkin.android.testzba.presentation.mapperspr.BinEntityMapperPr
 import com.koshkin.android.testzba.presentation.mapperspr.DetailMapper
 
@@ -35,7 +35,7 @@ class BinViewModel(
 
      val binsDb = arrayListOf<BinEntities>()
 
-    var detailInfo = arrayListOf<DetailInfo>()
+    var detailInfo = arrayListOf<Item>()
 
     private val _error = MutableLiveData<String>()
     val error: LiveData<String> = _error

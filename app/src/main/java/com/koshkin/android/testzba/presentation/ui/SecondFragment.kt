@@ -61,12 +61,12 @@ class SecondFragment : Fragment() {
 
     }
 
-    private fun getitems() =  binViewModel.detailInfo //listOf(
-//    Item(12, "первый", listOf("1", "2", "3")),
-//    Item(13, "второй", listOf("4", "5", "6")),
-//    Item(24, "третий", listOf("7", "8", "9")),
-//    Item(37, "четвертый", listOf("10", "11", "12")),
-//    Item(19, "пятый", listOf("13", "14", "15"))
+    private fun getitems() = listOf(
+    Item(12, "первый", listOf("1", "2", "3")),
+    Item(13, "второй", listOf("4", "5", "6")),
+    Item(24, "третий", listOf("7", "8", "9")),
+    Item(37, "четвертый", listOf("10", "11", "12")),
+    Item(19, "пятый", listOf("13", "14", "15"))
     )
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
