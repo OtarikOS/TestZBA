@@ -8,7 +8,6 @@ import com.koshkin.android.testzba.domain.usecases.GetRemoteBinUseCase
 import com.koshkin.android.testzba.domain.usecases.GetSavedBinsUseCase
 import com.koshkin.android.testzba.domain.usecases.SaveBinCardUseCase
 import com.koshkin.android.testzba.presentation.mapperspr.BinEntityMapperPr
-import com.koshkin.android.testzba.presentation.mapperspr.DetailMapper
 
 class CABApplication : Application() {
     private val binRepository: BinRepositoryImp

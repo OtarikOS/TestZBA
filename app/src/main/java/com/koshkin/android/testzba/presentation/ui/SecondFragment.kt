@@ -37,7 +37,7 @@ class SecondFragment : Fragment() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-  //      binViewModel.getBinHistory()
+      //  binViewModel.getBinHistory()
 
 //        expAdapter = ExpandableAdapter(requireContext(),binViewModel.binsDb,{ })
    //     Log.i("SF_onCR",binViewModel.binsDb[0].nameBank.toString())
@@ -56,18 +56,18 @@ class SecondFragment : Fragment() {
 
 //        val recyclerView:RecyclerView = view.findViewById(R.id.recycler_expandable)
 //        recyclerView.adapter = ExpandableAdapter(requireContext(),binViewModel.binsDb,{ })
-        _binding!!.recyclerExpandable.adapter =ExpandableAdapter(requireContext(),binViewModel.binsDb,getitems(),{ })
+        _binding!!.recyclerExpandable.adapter =ExpandableAdapter(requireContext(),binViewModel.arrayItem,{ })
         return binding.root
 
     }
 
-    private fun getitems() = listOf(
-    Item(12, "первый", listOf("1", "2", "3")),
-    Item(13, "второй", listOf("4", "5", "6")),
-    Item(24, "третий", listOf("7", "8", "9")),
-    Item(37, "четвертый", listOf("10", "11", "12")),
-    Item(19, "пятый", listOf("13", "14", "15"))
-    )
+    private fun getitems() = binViewModel.arrayItem
+//    Item(12, "первый", listOf("1", "2", "3")),
+//    Item(13, "второй", listOf("4", "5", "6")),
+//    Item(24, "третий", listOf("7", "8", "9")),
+//    Item(37, "четвертый", listOf("10", "11", "12")),
+//    Item(19, "пятый", listOf("13", "14", "15"))
+//    )
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 

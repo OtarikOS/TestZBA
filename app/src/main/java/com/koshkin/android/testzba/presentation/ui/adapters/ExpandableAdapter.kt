@@ -8,21 +8,21 @@ import android.view.View
 import android.view.View.GONE
 import android.view.View.VISIBLE
 import android.view.ViewGroup
+import android.widget.ImageButton
 import android.widget.TextView
 import androidx.cardview.widget.CardView
 import androidx.recyclerview.widget.RecyclerView
 import com.koshkin.android.testzba.R
 import com.koshkin.android.testzba.data.entities.BinEntities
-import com.koshkin.android.testzba.presentation.entitypr.Item
 
 
 class ExpandableAdapter(
     //TODO add animation (transitionFunc, transitionRevers)
     private val context: Context,
-    private val bins:List<BinEntities> = arrayListOf(),
-    private val items: List<Item>,
+  //  private val bins:List<BinEntities> = arrayListOf(),
+    private val items: List<BinEntities>,
     private val nestedClickListener: (String)->Unit,
-   // private val deleteClickListener: (View)-> Unit,
+//    private val deleteClickListener: (View)-> Unit,
   //  private val transitionFunc: (View,CardView)->Unit,
   //  private val transitionReverse:(View,CardView)->Unit
 ): RecyclerView.Adapter<ExpandableAdapter.ExpandableViewHolder>(){
@@ -34,6 +34,7 @@ class ExpandableAdapter(
         val details: RecyclerView = view.findViewById(R.id.recycler_item)
         val tvBinNumber: TextView = view.findViewById(R.id.number_card)
         val tvBankName:TextView = view.findViewById(R.id.bank_name)
+        val ibDelete:ImageButton = view.findViewById(R.id.delete)
 
     }
 
@@ -56,8 +57,11 @@ class ExpandableAdapter(
         with(holder){
             tvBinNumber.text = item.id.toString()
             tvBankName.text = item.nameBank
+            ibDelete.setOnClickListener {
+                //TODO add delete
+            }
             itemView.setOnClickListener {
-                Log.i("EX_onBVH",item.nameBank)
+                Log.i("EX_onBVH", item.nameBank!!)
                 when(details.visibility){
                     VISIBLE ->{
                      //   transitionReverse(details,rootLayout)
@@ -68,7 +72,7 @@ class ExpandableAdapter(
                         details.visibility = VISIBLE
                     }
                 }
-                details.adapter = NestedAdapter(item.nestedItems) {nestedClickListener(it)}
+                details.adapter = NestedAdapter(item) {nestedClickListener(it)}
             }
         }
     }

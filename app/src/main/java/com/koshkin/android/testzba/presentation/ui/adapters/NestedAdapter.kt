@@ -6,10 +6,11 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.koshkin.android.testzba.R
-import com.koshkin.android.testzba.presentation.entitypr.DetailInfo
+import com.koshkin.android.testzba.data.entities.BinEntities
+//import com.koshkin.android.testzba.presentation.entitypr.DetailInfo
 
 class NestedAdapter(
-    private val items: List<DetailInfo>,
+    private val items: BinEntities,
     private val clickListener: (String) -> Unit
 ) : RecyclerView.Adapter<NestedAdapter.NestedViewHolder>() {
     class NestedViewHolder(view: View):RecyclerView.ViewHolder(view) {
@@ -21,7 +22,7 @@ class NestedAdapter(
     }
 
     override fun onBindViewHolder(holder: NestedViewHolder, position: Int) {
-        val item = items[position]
+        val item = items
 
         with(holder) {
             text.text = item.alpha2
@@ -29,6 +30,6 @@ class NestedAdapter(
         }
     }
 
-    override fun getItemCount()=items.size
+    override fun getItemCount()=6
 
 }
