@@ -7,10 +7,14 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.viewModels
+import androidx.recyclerview.widget.ItemTouchHelper
+import androidx.recyclerview.widget.RecyclerView
 import com.koshkin.android.testzba.CABApplication
 import com.koshkin.android.testzba.R
+import com.koshkin.android.testzba.data.entities.BinEntities
 import com.koshkin.android.testzba.databinding.FragmentSecondExpandableBinding
 import com.koshkin.android.testzba.presentation.ui.adapters.ExpandableAdapter
+import com.koshkin.android.testzba.presentation.ui.adapters.SwipeToDeleteCallback
 
 /**
  * A simple [Fragment] subclass as the second destination in the navigation.
@@ -37,7 +41,15 @@ class SecondFragment : Fragment() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        expAdapter = ExpandableAdapter(requireContext(),binViewModel.arrayItem,{ },object: ExpandableAdapter.ActionClickListener{
+            override fun delete(id: BinEntities) {
+                binViewModel.deleteBin(id)
+            }
+
+        })
+
       //  binViewModel.getBinHistory()
+
 
 //        expAdapter = ExpandableAdapter(requireContext(),binViewModel.binsDb,{ })
    //     Log.i("SF_onCR",binViewModel.binsDb[0].nameBank.toString())
@@ -51,23 +63,30 @@ class SecondFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+
+
         var view = inflater.inflate(R.layout.fragment_second_expandable,container,false)
         _binding = FragmentSecondExpandableBinding.inflate(inflater, container, false)
 
 //        val recyclerView:RecyclerView = view.findViewById(R.id.recycler_expandable)
 //        recyclerView.adapter = ExpandableAdapter(requireContext(),binViewModel.binsDb,{ })
-        _binding!!.recyclerExpandable.adapter =ExpandableAdapter(requireContext(),binViewModel.arrayItem,{ })
+     //   _binding!!.recyclerExpandable.adapter =ExpandableAdapter(requireContext(),binViewModel.arrayItem,{ })
+        _binding!!.recyclerExpandable.adapter = expAdapter
+
+        val swipeToDeleteCallback = object :SwipeToDeleteCallback(){
+            override fun onSwiped(viewHolder: RecyclerView.ViewHolder, direction: Int) {
+                val actualPosition = viewHolder.adapterPosition
+                binViewModel.arrayItem.removeAt(actualPosition)
+                binding.recyclerExpandable.adapter?.notifyItemRemoved(actualPosition)
+            }
+        }
+        val itemTouchHelper = ItemTouchHelper(swipeToDeleteCallback)
+        itemTouchHelper.attachToRecyclerView(binding.recyclerExpandable)
         return binding.root
 
     }
 
-    private fun getitems() = binViewModel.arrayItem
-//    Item(12, "первый", listOf("1", "2", "3")),
-//    Item(13, "второй", listOf("4", "5", "6")),
-//    Item(24, "третий", listOf("7", "8", "9")),
-//    Item(37, "четвертый", listOf("10", "11", "12")),
-//    Item(19, "пятый", listOf("13", "14", "15"))
-//    )
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
@@ -80,10 +99,12 @@ class SecondFragment : Fragment() {
  //       }
 
 
-//        binding.buttonSecond.setOnClickListener {
+            //        binding.buttonSecond.setOnClickListener {
 //            findNavController().navigate(R.id.action_SecondFragment_to_FirstFragment)
 //        }
-    }
+
+
+        }
 
 
 

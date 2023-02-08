@@ -2,6 +2,7 @@ package com.koshkin.android.testzba.presentation.ui
 
 import android.util.Log
 import androidx.lifecycle.*
+import androidx.recyclerview.widget.RecyclerView
 import com.koshkin.android.testzba.data.entities.BinEntities
 import com.koshkin.android.testzba.data.mappers.BinEntityMapper
 import com.koshkin.android.testzba.domain.entities.BinCard
@@ -13,6 +14,8 @@ import com.koshkin.android.testzba.presentation.entitypr.BinEntityPr
 import kotlinx.coroutines.launch
 import com.koshkin.android.testzba.domain.common.Result
 import com.koshkin.android.testzba.presentation.mapperspr.BinEntityMapperPr
+import com.koshkin.android.testzba.presentation.ui.adapters.ExpandableAdapter
+import com.koshkin.android.testzba.presentation.ui.adapters.SwipeToDeleteCallback
 
 class BinViewModel(
 
@@ -91,6 +94,19 @@ class BinViewModel(
 //            }
 //        }
     }
+
+    fun deleteBin(id: BinEntities){
+        viewModelScope.launch {
+            deleteBinCardUseCase.invoke(id)
+        }
+    }
+
+//    fun delete() {
+//        viewModelScope.launch {
+//
+//            deleteBinCardUseCase.invoke(id:Int)
+//        }
+//    }
 
 //    fun saveBinPr(bin: BinEntityPr) {
 //        viewModelScope.launch {
