@@ -56,8 +56,6 @@ class BinViewModel(
                     Log.i("BVM_binPr", _dataLoading.value.toString())
                     savedBinsUseCase.invoke(BinEntityMapper().toBinEntities(_remoteBin!!, id))
 
-//                val savedBins = getSavedBinsUseCase.invoke()
-//                savedBins.collect {sBins -> bin.value = mapper.fro}
                 }
                 is Result.Error -> {
                     _dataLoading.postValue(false)
@@ -81,18 +79,6 @@ class BinViewModel(
       //      arrayItem =DetailMapper().toDetailInfoMapper(binsDb)
         Log.i("BVM_sizeItem",binsDb.size.toString())
         return binsDb
-
-//        viewModelScope.launch {
-//            when(val binResult = getSavedBinsUseCase.invoke()){
-//                is Result.Success<*> ->{
-//                    binsDb.clear()
-//                    binsDb.addAll(binResult.data as Collection<BinEntities>)
-//                }
-//                is Result.Error ->{
-//                    _error.postValue(binResult.exception.message)
-//                }
-//            }
-//        }
     }
 
     fun deleteBin(id: BinEntities){
@@ -100,25 +86,6 @@ class BinViewModel(
             deleteBinCardUseCase.invoke(id)
         }
     }
-
-//    fun delete() {
-//        viewModelScope.launch {
-//
-//            deleteBinCardUseCase.invoke(id:Int)
-//        }
-//    }
-
-//    fun saveBinPr(bin: BinEntityPr) {
-//        viewModelScope.launch {
-//            savedBinsUseCase.invoke(mapper.fromEntityPrToBinCard(bin))
-//        }
-//    }
-
-//    fun deleteBinPr(bin: BinEntityPr) {
-//        viewModelScope.launch {
-//            deleteBinCardUseCase.invoke(mapper.fromEntityPrToBinCard(bin))
-//        }
-//    }
 
     class BinViewModelFactory(
 

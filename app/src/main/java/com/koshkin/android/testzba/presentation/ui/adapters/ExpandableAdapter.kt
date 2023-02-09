@@ -85,7 +85,7 @@ class ExpandableAdapter(
 
             }
             itemView.setOnClickListener {
-                Log.i("EX_onBVH", item.nameBank!!)
+//                Log.i("EX_onBVH", item.nameBank!!)
                 when(details.visibility){
                     VISIBLE ->{
                      //   transitionReverse(details,rootLayout)

@@ -48,16 +48,7 @@ class SecondFragment : Fragment() {
 
         })
 
-      //  binViewModel.getBinHistory()
-
-
-//        expAdapter = ExpandableAdapter(requireContext(),binViewModel.binsDb,{ })
-   //     Log.i("SF_onCR",binViewModel.binsDb[0].nameBank.toString())
     }
-
-//    private fun getItems() = listOf(
-//
-//    )
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -68,9 +59,6 @@ class SecondFragment : Fragment() {
         var view = inflater.inflate(R.layout.fragment_second_expandable,container,false)
         _binding = FragmentSecondExpandableBinding.inflate(inflater, container, false)
 
-//        val recyclerView:RecyclerView = view.findViewById(R.id.recycler_expandable)
-//        recyclerView.adapter = ExpandableAdapter(requireContext(),binViewModel.binsDb,{ })
-     //   _binding!!.recyclerExpandable.adapter =ExpandableAdapter(requireContext(),binViewModel.arrayItem,{ })
         _binding!!.recyclerExpandable.adapter = expAdapter
 
         val swipeToDeleteCallback = object :SwipeToDeleteCallback(){
@@ -89,20 +77,6 @@ class SecondFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
-//        binding.recyclerExpandable.adapter =ExpandableAdapter(requireContext(),binViewModel.binsDb,{ })
-
-//        binding.recyclerExpandable.apply {
-//            layoutManager =LinearLayoutManager(requireContext())
-//        adapter=expAdapter
-     //       Log.i("SF_onVCR",binViewModel.binsDb[0].nameBank.toString())
- //       }
-
-
-            //        binding.buttonSecond.setOnClickListener {
-//            findNavController().navigate(R.id.action_SecondFragment_to_FirstFragment)
-//        }
-
 
         }
 
