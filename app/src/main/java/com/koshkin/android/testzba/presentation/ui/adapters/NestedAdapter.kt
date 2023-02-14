@@ -1,13 +1,25 @@
 package com.koshkin.android.testzba.presentation.ui.adapters
 
+import android.content.Context
+import android.content.Intent
+import android.net.Uri
+import android.text.SpannableString
+import android.text.Spanned
+import android.text.style.URLSpan
+import android.text.style.UnderlineSpan
+import android.text.util.Linkify
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
+import androidx.core.content.ContextCompat.startActivity
+//import androidx.core.content.ContextCompat.startActivity
 import androidx.recyclerview.widget.RecyclerView
 import androidx.transition.Visibility
 import com.koshkin.android.testzba.R
 import com.koshkin.android.testzba.data.entities.BinEntities
+import com.koshkin.android.testzba.presentation.ui.FirstFragment
+import com.koshkin.android.testzba.presentation.ui.MainActivity
 
 class NestedAdapter(
     private val items: BinEntities,
@@ -51,15 +63,35 @@ class NestedAdapter(
             if(item.city!=null) {increment=" City: ${item.city},"
             info += increment}
             text.text = info
-            if(item.url!=null) url.text = item.url
+
+            if(item.url!=null) {
+                url.text = item.url
+
+                Linkify.addLinks(url,Linkify.WEB_URLS)
+            }
             else url.visibility = View.GONE
-            if(item.nameBank!=null) phone.text = item.phone
+            if(item.nameBank!=null) {
+                phone.text = item.phone
+                Linkify.addLinks(phone,Linkify.PHONE_NUMBERS)
+            }
             else phone.visibility = View.GONE
-            if(item.latitude!= null) map.text = "Longitude: ${item.longitude} Latitude: ${item.latitude}"
+            if(item.latitude!= null) {
+                map.text = "Longitude: ${item.longitude} Latitude: ${item.latitude}"
+              map.setOnClickListener { goMap() }
+            }
             else map.visibility = View.GONE
          //   itemView.setOnClickListener { clickListener(item) }
         }
     }
+
+    private fun goMap() {
+      //  var mapIntent= Intent(Context.ACTIVITY_SERVICE)
+        val geoUriString = "geo:0,10?z=2"
+        val geoUri: Uri = Uri.parse(geoUriString)
+       val  mapIntent = Intent(Intent.ACTION_VIEW, geoUri)
+        startActivity()
+    }
+
 
     override fun getItemCount()=1
 

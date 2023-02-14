@@ -73,7 +73,7 @@ class ExpandableAdapter(
         with(holder){
 
             tvBinNumber.text = item.id.toString()
-            tvBankName.text = item.nameBank
+            tvBankName.text = (item.nameBank?:"NO NAME BANK")
             ibDelete.setOnClickListener {
                 //TODO add delete
                 val actualPosition = holder.adapterPosition
